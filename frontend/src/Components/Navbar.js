@@ -1,19 +1,28 @@
 import navbar from "./Navbar.css";
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
+  const [isConnected, setIsConnected] = useState(false);
+
+  const handleClick = () => {
+    setIsConnected(!isConnected);
+  };
+
   return (
-    <div className = "navbar" >
-      <nav >
+    <div className="navbar">
+      <nav>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link to="/about">About</Link>
           </li>
           <li>
-            <a href="/connect">Connect</a>
+            <div className={`connect ${isConnected ? 'green' : 'red'}`} onClick={handleClick}>
+              Connect
+            </div>
           </li>
         </ul>
       </nav>

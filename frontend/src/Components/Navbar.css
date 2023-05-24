@@ -4,7 +4,6 @@ div {
   border-radius: 2px;
 }
 
-
 nav {
   background-color: #f0f2f5;
   color: #000;
@@ -30,13 +29,12 @@ a {
   font-weight: bold;
   font-size: 16px;
   position: relative;
-  transition: color 0.3s ease
+  transition: color 0.3s ease;
 }
 
 a:hover {
   text-decoration: none;
 }
-
 
 a:before {
   content: '';
@@ -60,7 +58,6 @@ a:hover:before {
   transform: scaleX(1);
 }
 
-
 /* Media query for smaller screens */
 @media (max-width: 600px) {
   nav {
@@ -71,3 +68,28 @@ a:hover:before {
     margin-left: 5px; 
   }
 }
+
+/* Rest of the CSS code */
+
+.connect {
+  color: red;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.connect.green {
+  color: green;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Rest of the CSS code */

@@ -1,16 +1,17 @@
-import './App.css';
-import Navbar from './Components/Navbar';
-import FrontPage from './Components/FrontPage';
-import OfferForm from './Components/OfferForm';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route,  } from 'react-router-dom';
+import Home from './Components/Home';
+import About from './Components/About';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Navbar />
-      <FrontPage />
-      <OfferForm />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/About" element={<About />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
