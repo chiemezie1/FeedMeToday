@@ -1,3 +1,4 @@
+import home from "./Home.css";
 import React from 'react';
 import Navbar from './Navbar';
 import FrontPage from './FrontPage';
@@ -5,7 +6,7 @@ import OfferForm from './OfferForm';
 import { useWeb3React } from "@web3-react/core"
 
 function Home() {
-  const { active, activate, deactivate, chainId, account, library: provider } = useWeb3React();
+  const { account } = useWeb3React();
   return (
     <div>
       <Navbar />
