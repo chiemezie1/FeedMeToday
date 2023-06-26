@@ -17,7 +17,7 @@ async function main() {
   }
 
   //This writes the ABI and address to the FeedMeToday.json
-  fs.writeFileSync('./frontend/src/contract/FeedMeToday.json', JSON.stringify(data))
+  fs.writeFileSync('../frontend/src/contract/FeedMeToday.json', JSON.stringify(data))
 }
 
 main()
