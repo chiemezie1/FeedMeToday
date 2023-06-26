@@ -23,6 +23,11 @@ function Navbar() {
     }
   }
 
+  async function disconnect() {
+    await deactivate();
+    localStorage.removeItem("connectedAccount");
+  }
+
   return (
     <div className="navbar">
       <nav>
@@ -34,10 +39,12 @@ function Navbar() {
             <Link to="/about">About</Link>
           </li>
           <li>
-            <div className={`connect ${activate ? 'green' : 'red'}`} onClick={connect}>
-              Connect
+            <div
+              className={`connect ${active ? 'red' : 'green'}`}
+              onClick={active ? disconnect : connect}
+            >
+              {active ? 'Disconnect' : 'Connect'}
             </div>
-            <p>{account}</p>
           </li>
         </ul>
       </nav>

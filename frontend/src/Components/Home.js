@@ -2,11 +2,14 @@ import React from 'react';
 import Navbar from './Navbar';
 import FrontPage from './FrontPage';
 import OfferForm from './OfferForm';
+import { useWeb3React } from "@web3-react/core"
 
 function Home() {
+  const { active, activate, deactivate, chainId, account, library: provider } = useWeb3React();
   return (
     <div>
       <Navbar />
+      <p className="address">{account}</p>
       <FrontPage />
       <OfferForm />
     </div>
