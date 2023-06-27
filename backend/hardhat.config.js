@@ -16,9 +16,9 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 module.exports = {
-  defaultNetwork: "mumbai",
+  defaultNetwork: "goerli",
   networks: {
-    mumbai: {
+    goerli: {
       url: API_URL,
       accounts: [`0x${PRIVATE_KEY}`]
    }

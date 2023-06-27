@@ -10,17 +10,6 @@ function OfferForm() {
   const [massage, setMassage] = useState('');
   const { active, library: provider } = useWeb3React();
 
-  // async function handleSubmit(event) {
-  //   event.preventDefault();
-  //   try {
-  //     const signer = provider.getSigner();
-  //     const contractInstance = new ethers.Contract(contract.address, contract.abi, signer);
-  //     await contractInstance.makeOffer(foodChoice, amount, massage);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   async function handleSubmit(event) {
     event.preventDefault();
     if (active) {
@@ -29,7 +18,7 @@ function OfferForm() {
       try {
         await contractInstance.makeOffer(foodChoice, amount, massage);
       } catch (error) {
-        console.log(error);
+        console.log("please connect MetaMask"+error);
       }
     } else {
       console.log("Please install MetaMask");

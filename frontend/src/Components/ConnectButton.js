@@ -7,11 +7,11 @@ function ConnectButton() {
 
   const connectWebsite = async () => {
     const chainId = await window.ethereum.request({ method: "eth_chainId" });
-    if (chainId !== "0x13881") {
-      alert("Incorrect network! Switch your MetaMask network to Polygon Mumbai testnet");
+    if (chainId !== "0x13881" && chainId !== "0x80001") {
+      alert("Incorrect network! Switch your MetaMask network to the desired testnet");
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: "0x13881" }],
+        params: [{ chainId: "0x80001" }],
       });
       return;
     }

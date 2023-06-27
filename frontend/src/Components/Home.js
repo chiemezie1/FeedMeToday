@@ -12,7 +12,7 @@ function Home() {
 
   const { ethers } = require('ethers');
   const [contract, setContract] = useState(null);
-  const { account, library: provider } = useWeb3React();
+  const { account, chainId, library: provider } = useWeb3React();
 
   useEffect(() => {
     initializeContract();
@@ -96,7 +96,7 @@ function Home() {
   return (
     <div>
       <Navbar />
-      <p className="address">{account}</p>
+      <p className="address">{account} <br /> { chainId}</p>
       <FrontPage />
       <OfferForm />
     </div>
