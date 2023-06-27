@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Web3 from 'web3';
-import feedMeContractABI from './contracts/FeedMeToday.json';
+import feedMeContract from './contracts/FeedMeToday.json';
 
 const ContractPage = () => {
+    const {account, library: provider } = useWeb3React();
   const [contract, setContract] = useState(null);
 
   useEffect(() => {
@@ -11,23 +11,19 @@ const ContractPage = () => {
 
   const initializeContract = async () => {
     try {
-      const web3 = new Web3(window.ethereum);
-      const networkId = await web3.eth.net.getId();
-      const contractAddress = feedMeContractABI.networks[networkId].address;
-      const contractInstance = new web3.eth.Contract(feedMeContractABI.abi, contractAddress);
+      const signer = provider.getSigner();
+      const contractInstance = new ethers.Contract(feedMeContract.address, feedMeContract.abi, signer);
       setContract(contractInstance);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const makeOffer = async () => {
+
+  const makeOffer = async (_foodChoice, _amount, _massage) => {
     try {
       // Call the 'makeOffer' function of the contract
-      const foodChoice = 'Pizza';
-      const amount = 1;
-      const massage = 'Please deliver to my address.';
-      const tx = await contract.methods.makeOffer(foodChoice, amount, massage).send({ from: window.ethereum.selectedAddress });
+      const tx = await contract.methods.makeOffer(_foodChoice, _amount, _massage).send({ from: window.ethereum.selectedAddress });
       console.log(tx);
     } catch (error) {
       console.log(error);
@@ -37,8 +33,7 @@ const ContractPage = () => {
   const getBuyer = async () => {
     try {
       // Call the 'getBuyer' function of the contract
-      const buyerAddress = window.ethereum.selectedAddress;
-      const result = await contract.methods.getBuyer(buyerAddress).call();
+      const result = await contract.methods.getBuyer(account).call();
       console.log(result);
     } catch (error) {
       console.log(error);
@@ -55,22 +50,20 @@ const ContractPage = () => {
     }
   };
 
-  const addFavoriteFoodChoice = async () => {
+  const addFavoriteFoodChoice = async (_foodChoice) => {
     try {
       // Call the 'addFavoriteFoodChoice' function of the contract
-      const foodChoice = 'Sushi';
-      const tx = await contract.methods.addFavoriteFoodChoice(foodChoice).send({ from: window.ethereum.selectedAddress });
+      const tx = await contract.methods.addFavoriteFoodChoice(_foodChoice).send({ from: window.ethereum.selectedAddress });
       console.log(tx);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const removeFavoriteFoodChoice = async () => {
+  const removeFavoriteFoodChoice = async (_index) => {
     try {
       // Call the 'removeFavoriteFoodChoice' function of the contract
-      const index = 0;
-      const tx = await contract.methods.removeFavoriteFoodChoice(index).send({ from: window.ethereum.selectedAddress });
+      const tx = await contract.methods.removeFavoriteFoodChoice(_index).send({ from: window.ethereum.selectedAddress });
       console.log(tx);
     } catch (error) {
       console.log(error);
